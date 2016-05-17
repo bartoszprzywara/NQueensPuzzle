@@ -1,0 +1,65 @@
+﻿***Analiza problemu:
+  Problem hetmanów, polega na takim rozstawieniu N hetmanów na szachownicy N x N, aby się nawzajem
+  nie atakowały (szachowały). Hetman szachuje każde pole znajdujące się w tym samym wierszu, kolumnie
+  oraz przekątnych co on sam.
+
+***Algorytmy programu:
+  Algorytm z nawrotami:
+    1. Wszystkie pola szachownicy mają wartość -1 (wszystkie wartości tablic kolumn, prawych
+       przekątnych oraz lewych przekątnych są równe -1).
+    2. Umieszczenie hetmana w wierszu W i kolumnie K.
+    3. Zapamiętanie w wierszu informacji, w której kolumnie stoi hetman, a także zajęcie przekątnych
+       (nadanie im wartości równej 1).
+    4. Jeśli jest to ostatnia kolumna, to pokazanie wyników obliczeń.
+    5. Jeśli nie, to umieszczenie kolejnego hetmana w kolumnie K+1
+    6. I tak we wszystkich możliwych wierszach.
+    7. Na końcu przypisanie z powrotem kolumnom i przekątnym wartości równej -1.
+  Algorytm rysowania szachownicy:
+    1. Pisanie N wierszy i kolumn.
+    2. Jeśli w danym wierszu i kolumnie stoi hetman, to pisanie "X" 
+    3. Jeśli w danym wierszu i kolumnie nie ma hetmana, to pisanie "."
+
+***Opis funkcjonalny zaimplementowanych możliwości programu:
+  Program należy uruchamiać w terminalu/wierszu poleceń. Uruchamiając go z odpowiednimi parametrami 
+  można określić wielkość szachownicy (-n), ilość wypisanych rozwiązań (-r) oraz nazwę pliku, do którego
+  zostaną zapisane te rozwiązania (-o). Dzięki temu użytkownik ma dużą swobodę w określaniu, jak program
+  ma działać. Ponadto, można również skorzystać z pomocy (-h), w której wyjaśnione jest, jak korzystać
+  z programu. Brak argumentów powoduje uruchomienie programu z parametrami domyślnymi. Jak już wcześniej
+  wspomniano, program wypisuje do pliku gotowe rozwiązania w postaci przejrzystych szachownic, oraz
+  podaje krótką informację o wprowadzonych parametrach.
+
+***Lista najważniejszych funkcji i struktur danych z krótkim ich opisem (skomentowane deklaracje):
+  funkcja sprawdz_bledy (int *p); - sprawdzenie, czy pamięć została poprawnie zaalokowana
+  funkcja okresl_rozmiar (); - określenie rozmiaru szachownicy (wierszy i przekątnych)
+  funkcja czysc_pola (); - czyszczenie informacji o zajętych polach (potrzebne do liczenia rozwiązań)
+  funkcja czysc_plik (); - tworzenie pliku wyjściowego lub czyszczenie go, jeśli już istnieje
+  funkcja wypisz_help (); - wypisanie pomocy
+  funkcja wypisz_info (); - wypisanie informacji o parametrach wejściowych
+  funkcja wypisz_komunikat (); - wypisanie komunikatu o braku rozwiązań
+  funkcja rysuj_szachownice (); - rysowanie szachownicy o wymiarach n x n
+  funkcja licz_rozwiazania (int w, int k); - algorytm z nawrotami
+
+***Opis przeprowadzonego testowania programu i wyciągnięte wnioski
+  Program poprawnie liczy rozwiązania i wypisuje je do pliku. Dla dużych szachownic, widać wyraźne
+  spowolnienie programu, jednak dla szachownic o wymiarach poniżej 20x20 cały proces liczenia odbywa
+  się sprawnie. Ponadto, da się zauważyć szybszą pracę programu dla szachownicy o wymiarze
+  nieparzystym, np. 23x23.
+
+***Analiza znanych ograniczeń programu
+  Program nie zawiera funkcji sprawdzających błędy przy wpisywaniu parametrów szachownicy (za pomocą
+  funkcji getopt). Trzeba tutaj polegać na inteligencji użytkownika oraz na tym, że nie wpisze on
+  danych wziętych "z kosmosu". Inne ograniczenia programu wynikają bardziej z posiadanego sprzętu
+  komputerowego, ponieważ słabszym maszynom ze starszymi procesorami dużo czasu zajmuje obliczanie
+  wyników dla dużych szachownic. Tak więc, użytkownik musi ograniczyć się do dość małych szachownic,
+  jeśli chce mieć dużo rozwiązań w małym odstępie czasowym.
+
+***Propozycje rozwoju programu
+  1. Implementacja funkcji sprawdzających błędne dane wprowadzone przez użytkownika.
+  2. Graficzne przedstawienie umieszczania każdego hetmana na szachownicy po kolei, jeden po drugim.
+  3. Losowe wybieranie położenia pierwszego hetmana, aby pierwsze rozwiązania były zróżnicowane (przydatne,
+     kiedy uzytkownik chce mieć małą liczbę wypisanych rozwiązań, wtedy te rozwiązania są do siebie podobne.
+
+***Bibliografia i odniesienia
+  1. Brian W. Kerninghan, Dennis M. Ritchie Język ANSI C
+  2. pl.wikipedia.org/wiki/Problem_ośmiu_hetmanów
+  3. www.algorytm.org/index.php?option=com_content&task=view&id=169&Itemid=28
